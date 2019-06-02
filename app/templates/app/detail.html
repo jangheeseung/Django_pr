@@ -1,0 +1,36 @@
+{% extends 'app/layout.html' %}
+
+{% block header %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/static/app/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Detail Blog</h1>
+            <span class="subheading">디테일 페이지 입니다.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <img src="{{ blog.image.url }}">
+        <h1>{{ blog.title }}</h1>
+        <p>{{ blog.pub_date }}</p>
+        <p>{{ blog.body }}</p>
+        {% for hashtag in blog.hashtags.all %}
+          <span>{{ hashtag.name }}</span>
+        {% endfor %}
+        <br>
+        <a class="btn btn-outline-secondary btn-sm" href="{% url 'edit' pk=blog.pk %}">수정</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{% url 'remove' pk=blog.pk %}">삭제</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{% url 'index' %}">홈으로</a>
+    </div>
+</div>
+{% endblock %}
